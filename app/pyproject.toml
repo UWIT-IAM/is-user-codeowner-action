@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "is-user-codeowner-action"
+version = "0.1.0"
+description = "A small application to determine if the user who initiated the workflow is a codeowner of all paths amended in the repository delta represented in the change."
+authors = ["Tom Thorogood <goodtom@uw.edu>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+GitPython = "^3.1.13"
+pydantic = "^1.7.3"
+devtools = "^0.6.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.2"
+black = "^20.8b1"
+pytest-cov = "^2.11.1"
+
+[tool.poetry.scripts]
+is-user-codeowner = 'is_user_codeowner_action.app:run_action'
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
