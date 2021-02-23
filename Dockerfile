@@ -10,7 +10,7 @@ RUN poetry install \
         --cov is_user_codeowner_action \
         --cov-report=term-missing \
         --cov-fail-under=97 test.py \
-    && poetry show \
+    # TODO: How to purge all dev dependencies at once, without hardcoding?
     && poetry remove --dev pytest-cov \
     && poetry remove --dev pytest \
     && poetry remove --dev black

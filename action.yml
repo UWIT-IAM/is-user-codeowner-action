@@ -1,0 +1,31 @@
+name: Is requester CODEOWNER
+description:
+  Determines whether a given user is the CODEOWNER of all paths in the
+  diff between the PR branch and the target branch
+inputs:
+  requester:
+    description: 'the github username (e.g., "@octocat") to check'
+    required: true
+  target_branch:
+    description: 'the git branch to diff against'
+    required: true
+    default: 'main'
+  repository_mount_point:
+    description: 'the location on the docker image file system you are using to mount
+     your repository.'
+    required: true
+    default: '/github/workspace'
+outputs:
+  result:
+    description: |
+    'True' if the user is a CODEOWNER of all paths in the change, 'False' otherwise.
+runs:
+  using: 'docker'
+  image: 'docker://uwitiam/is-user-codeowner-action:latest'
+  args:
+    - '--user'
+    - ${{ github.actor }}
+    - '--target-branch'
+    - ${{ inputs.target_branch }}
+    - '--path-to-repository'
+    - ${{ inputs.repository_mount_point }}
